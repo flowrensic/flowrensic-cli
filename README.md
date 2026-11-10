@@ -1,5 +1,7 @@
 # Flowrensic CLI
 
+Flowrensic runs beside your durable workflow engine and finds problems in your workflows. This is the CLI of Temporal Flowrensic, the edition for Temporal.
+
 The command line client of Flowrensic. A pipeline runs it to fetch replay sets and to print the summary of
 its ephemeral run, failing the step when the outcome is failed.
 
