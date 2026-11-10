@@ -1,17 +1,17 @@
 #!/bin/sh
 # Installs the Flowrensic CLI: picks the binary of this OS and arch from a
-# release of github.com/flowrensic/flowrensic-cli, checks its sha256 against checksums.txt
+# release of github.com/flowrensic/temporal-flowrensic-cli, checks its sha256 against checksums.txt
 # and puts it in a folder it can write to.
 #
-#   curl -fsSL https://github.com/flowrensic/flowrensic-cli/releases/latest/download/install.sh | sh
+#   curl -fsSL https://github.com/flowrensic/temporal-flowrensic-cli/releases/latest/download/install.sh | sh
 #
 # FLOWRENSIC_VERSION          a release such as 1.2.3 or v1.2.3, the newest when unset
-# FLOWRENSIC_INSTALL_DIR      where to put flowrensic, else /usr/local/bin when writable, else $HOME/.local/bin
-# FLOWRENSIC_DOWNLOAD_BASE_URL  where the releases are, https://github.com/flowrensic/flowrensic-cli/releases when unset
+# FLOWRENSIC_INSTALL_DIR      where to put temporal-flowrensic, else /usr/local/bin when writable, else $HOME/.local/bin
+# FLOWRENSIC_DOWNLOAD_BASE_URL  where the releases are, https://github.com/flowrensic/temporal-flowrensic-cli/releases when unset
 set -eu
 
 fail() {
-  echo "flowrensic install: $*" >&2
+  echo "temporal-flowrensic install: $*" >&2
   exit 1
 }
 
@@ -23,9 +23,9 @@ case "$os/$arch" in
   Darwin/arm64) target=darwin-arm64 ;;
   *) fail "no binary for $os $arch. There are binaries for Linux x86_64, Linux arm64 and macOS arm64." ;;
 esac
-binary="flowrensic-$target"
+binary="temporal-flowrensic-$target"
 
-base="${FLOWRENSIC_DOWNLOAD_BASE_URL:-https://github.com/flowrensic/flowrensic-cli/releases}"
+base="${FLOWRENSIC_DOWNLOAD_BASE_URL:-https://github.com/flowrensic/temporal-flowrensic-cli/releases}"
 version="${FLOWRENSIC_VERSION:-}"
 if [ -z "$version" ]; then
   url="$base/latest/download"
@@ -70,9 +70,9 @@ else
 fi
 mkdir -p "$dir" || fail "could not make $dir"
 chmod 755 "$tmp/$binary"
-mv "$tmp/$binary" "$dir/flowrensic" || fail "could not write $dir/flowrensic"
+mv "$tmp/$binary" "$dir/temporal-flowrensic" || fail "could not write $dir/temporal-flowrensic"
 
-echo "Installed the Flowrensic CLI at $dir/flowrensic"
+echo "Installed the Flowrensic CLI at $dir/temporal-flowrensic"
 case ":$PATH:" in
   *":$dir:"*) ;;
   *) echo "$dir is not on PATH. Add it with: export PATH=\"$dir:\$PATH\"" ;;
